@@ -39,6 +39,7 @@ public class MainActivity extends PinActivity implements View.OnClickListener {
         this.findViewById(R.id.button_unlock_pin).setOnClickListener(this);
         this.findViewById(R.id.button_compat_locked).setOnClickListener(this);
         this.findViewById(R.id.button_not_locked).setOnClickListener(this);
+        this.findViewById(R.id.changeling).setOnClickListener(this);
         TextView welcome = (TextView)findViewById(welcomemsg);
 
         SharedPreferences prefs = getSharedPreferences("AppPref", Context.MODE_PRIVATE);
@@ -68,6 +69,10 @@ public class MainActivity extends PinActivity implements View.OnClickListener {
                 Toast.makeText(this, "Clocked Out", Toast.LENGTH_LONG).show();
                 /*Intent intent3 = new Intent(MainActivity.this, NotLockedActivity.class);
                 startActivity(intent3);*/
+                break;
+            case R.id.changeling:
+                Toast.makeText(this, "Here is the final button which changes face depending on login/logout case ver 1", Toast.LENGTH_LONG).show();
+                break;
         }
     }
 
