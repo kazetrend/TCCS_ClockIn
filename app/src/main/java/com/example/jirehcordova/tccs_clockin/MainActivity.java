@@ -3,9 +3,10 @@ package com.example.jirehcordova.tccs_clockin;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,10 +23,12 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static com.example.jirehcordova.tccs_clockin.R.id.changeling;
 import static com.example.jirehcordova.tccs_clockin.R.id.welcomemsg;
 
 public class MainActivity extends PinActivity implements View.OnClickListener {
 
+    //private Button change;
     private static final int REQUEST_CODE_ENABLE = 11;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +42,14 @@ public class MainActivity extends PinActivity implements View.OnClickListener {
         this.findViewById(R.id.button_unlock_pin).setOnClickListener(this);
         this.findViewById(R.id.button_compat_locked).setOnClickListener(this);
         this.findViewById(R.id.button_not_locked).setOnClickListener(this);
-        this.findViewById(R.id.changeling).setOnClickListener(this);
         TextView welcome = (TextView)findViewById(welcomemsg);
 
+        Button btn = (Button)findViewById(R.id.changeling);
+        btn.setText("CLOCK IN!!!");
+        btn.setOnClickListener(this);
+        
         SharedPreferences prefs = getSharedPreferences("AppPref", Context.MODE_PRIVATE);
         String name = prefs.getString("header", "");
-
         welcome.setText("Welcome, " +name+"!");
     }
 
@@ -72,6 +77,7 @@ public class MainActivity extends PinActivity implements View.OnClickListener {
                 break;
             case R.id.changeling:
                 Toast.makeText(this, "Here is the final button which changes face depending on login/logout case ver 1", Toast.LENGTH_LONG).show();
+
                 break;
         }
     }

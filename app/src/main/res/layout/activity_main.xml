@@ -59,18 +59,16 @@
         android:layout_alignParentEnd="true" />
 
     <Button
-        android:text="Button"
+        android:text="Clock On"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="75dp"
-        android:id="@+id/changeling"
-        android:textSize="28sp"
-        android:textAlignment="center"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:elevation="15dp"
-        android:backgroundTint="@color/light_blue_500"
-        android:background="@android:color/holo_blue_dark"
         android:layout_below="@+id/button_not_locked"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="71dp"
+        android:id="@+id/changeling"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:elevation="15dp"
+        android:onClick=""/>
 
 </RelativeLayout>

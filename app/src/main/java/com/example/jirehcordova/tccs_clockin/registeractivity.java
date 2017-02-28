@@ -26,14 +26,12 @@ public class registeractivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registeractivity);
 
-
         final EditText username = (EditText)findViewById(R.id.usename);
         final EditText email = (EditText)findViewById(R.id.email);
         Button bregister = (Button)findViewById(R.id.submit);
         postgreshelper client = new postgreshelper();
 
         client.execute();
-
         bregister.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -47,7 +45,6 @@ public class registeractivity extends AppCompatActivity {
                 editor.commit();
 
                 Map vals = new HashMap();
-                //vals.put("id", 0);
                 vals.put("username", usernamee);
                 vals.put("email", emaile);
                 startActivity(intent);
