@@ -23,7 +23,6 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static com.example.jirehcordova.tccs_clockin.R.id.changeling;
 import static com.example.jirehcordova.tccs_clockin.R.id.welcomemsg;
 
 public class MainActivity extends PinActivity implements View.OnClickListener {
@@ -47,7 +46,7 @@ public class MainActivity extends PinActivity implements View.OnClickListener {
         Button btn = (Button)findViewById(R.id.changeling);
         btn.setText("CLOCK IN!!!");
         btn.setOnClickListener(this);
-        
+
         SharedPreferences prefs = getSharedPreferences("AppPref", Context.MODE_PRIVATE);
         String name = prefs.getString("header", "");
         welcome.setText("Welcome, " +name+"!");
