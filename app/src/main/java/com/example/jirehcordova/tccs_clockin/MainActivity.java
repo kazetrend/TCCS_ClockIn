@@ -3,6 +3,10 @@ package com.example.jirehcordova.tccs_clockin;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,18 +27,28 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/*import uk.me.lewisdeane.ldialogs.BaseDialog;
+import uk.me.lewisdeane.ldialogs.CustomDialog;*/
+
 import static com.example.jirehcordova.tccs_clockin.R.id.welcomemsg;
 
 public class MainActivity extends PinActivity implements View.OnClickListener {
+    SharedPreferences prefs;
+    SharedPreferences.Editor editor;
+    public static final String KEY_LOGGED_IN = "isloggedin";
+    Button btn;
 
     //private Button change;
     private static final int REQUEST_CODE_ENABLE = 11;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent intent = new Intent(MainActivity.this, CustomPinActivity.class);
+
+       /* Intent intent = new Intent(MainActivity.this, CustomPinActivity.class);
         intent.putExtra(AppLock.EXTRA_TYPE, AppLock.ENABLE_PINLOCK);
-        startActivityForResult(intent, REQUEST_CODE_ENABLE);
+        startActivityForResult(intent, REQUEST_CODE_ENABLE);*/
+        startActivity(new Intent(this, ChangePinActivity.class));
+
         setContentView(R.layout.activity_main);
 
         this.findViewById(R.id.button_change_pin).setOnClickListener(this);
@@ -43,13 +57,18 @@ public class MainActivity extends PinActivity implements View.OnClickListener {
         this.findViewById(R.id.button_not_locked).setOnClickListener(this);
         TextView welcome = (TextView)findViewById(welcomemsg);
 
-        Button btn = (Button)findViewById(R.id.changeling);
-        btn.setText("CLOCK IN!!!");
+        btn = (Button)findViewById(R.id.changeling);
+        btn.setText("CLOCK IN");
         btn.setOnClickListener(this);
 
-        SharedPreferences prefs = getSharedPreferences("AppPref", Context.MODE_PRIVATE);
+        prefs = getSharedPreferences("AppPref", Context.MODE_PRIVATE);
+        editor = prefs.edit();
         String name = prefs.getString("header", "");
         welcome.setText("Welcome, " +name+"!");
+
+        if(prefs.getBoolean(KEY_LOGGED_IN, false)){
+            btn.setText("CLOCK OUT");
+        }
     }
 
     @Override
@@ -76,7 +95,15 @@ public class MainActivity extends PinActivity implements View.OnClickListener {
                 break;
             case R.id.changeling:
                 Toast.makeText(this, "Here is the final button which changes face depending on login/logout case ver 1", Toast.LENGTH_LONG).show();
-
+                if(prefs.getBoolean(KEY_LOGGED_IN, false)){
+                    editor.putBoolean(KEY_LOGGED_IN, false);
+                    btn.setText("CLOCK IN");
+                }
+                else{
+                    editor.putBoolean(KEY_LOGGED_IN, true);
+                    btn.setText("CLOCK OUT");
+                }
+                editor.commit();
                 break;
         }
     }
@@ -116,5 +143,50 @@ public class MainActivity extends PinActivity implements View.OnClickListener {
         });
 
         VolleyHelper.getInstance(this).addToRequestQueue(request);
+    }
+
+    private void showMyDialog(String content){
+       /* Resources res = getResources();
+        CustomDialog.Builder builder = new CustomDialog.Builder(this,
+                res.getString(R.string.activity_dialog_title),
+                res.getString(R.string.activity_dialog_accept));
+        builder.content(content);
+        builder.negativeText(res.getString(R.string.activity_dialog_decline));
+     //   builder.
+
+        //Set theme
+        builder.darkTheme(false);
+        builder.typeface(Typeface.SANS_SERIF);
+        builder.positiveColor(res.getColor(R.color.light_blue_500)); // int res, or int colorRes parameter versions available as well.
+        builder.negativeColor(res.getColor(R.color.light_blue_500));
+        builder.rightToLeft(false); // Enables right to left positioning for languages that may require so.
+        builder.titleAlignment(BaseDialog.Alignment.CENTER);
+        builder.buttonAlignment(BaseDialog.Alignment.CENTER);
+
+        //Set text sizes
+        builder.titleTextSize((int) res.getDimension(R.dimen.activity_dialog_title_size));
+        builder.contentTextSize((int) res.getDimension(R.dimen.activity_dialog_content_size));
+        builder.buttonTextSize((int) res.getDimension(R.dimen.activity_dialog_positive_button_size));
+        //builder.buttonTextSize(int) 6sp);
+        res.getDimension(R.dimen.activity_dialog_negative_button_size);
+
+        //Build the dialog.
+        CustomDialog customDialog = builder.build();
+        customDialog.setCanceledOnTouchOutside(false);
+        customDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        customDialog.setClickListener(new CustomDialog.ClickListener() {
+            @Override
+            public void onConfirmClick() {
+                Toast.makeText(getApplicationContext(), "Yes", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelClick() {
+                Toast.makeText(getApplicationContext(), "Cancel", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Show the dialog.
+        customDialog.show();*/
     }
 }

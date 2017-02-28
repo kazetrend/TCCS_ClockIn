@@ -11,16 +11,17 @@ public class User implements Serializable {
     private String firstname;
     private String lastname;
     private boolean hasFirstLogin;
+    private String hashedPin;
 
-    public User(int id, String firstname, String lastname, boolean hasFirstLogin) {
+    public User(int id, String firstname, String lastname, boolean hasFirstLogin, String hashedPin) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
         this.hasFirstLogin = hasFirstLogin;
+        this.hashedPin = hashedPin;
     }
 
     public User() {
-
     }
 
     public int getId() {
@@ -53,5 +54,13 @@ public class User implements Serializable {
 
     public void setHasFirstLogin(boolean hasFirstLogin) {
         this.hasFirstLogin = hasFirstLogin;
+    }
+
+    public String getHashedPin() {
+        return hashedPin;
+    }
+
+    public void setHashedPin(String hashedPin) {
+        this.hashedPin = hashedPin;
     }
 }

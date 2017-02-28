@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.github.orangegangsters.lollipin.registeractivity">
+    >
 
     <Button
         android:text="TO THE MAIN!!"
@@ -21,7 +21,7 @@
         android:layout_marginBottom="64dp" />
 
     <TextView
-        android:text="REGISTER USER"
+        android:text="LOGIN USER"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -40,19 +40,18 @@
         android:id="@+id/email"
         android:hint="Email Address"
         android:layout_marginTop="61dp"
-        android:layout_below="@+id/usename"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <EditText
+        android:id="@+id/Pin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="numberPassword"
         android:ems="10"
-        android:layout_marginTop="45dp"
-        android:id="@+id/usename"
-        android:hint="Username"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
+        android:layout_marginTop="48dp"
+        android:hint="PIN"
+        android:layout_below="@+id/email"
         android:layout_alignParentStart="true" />
+
 </RelativeLayout>

@@ -6,17 +6,19 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.github.orangegangsters.lollipin.lib.managers.AppLockActivity;
+import com.github.orangegangsters.lollipin.lib.managers.LockManager;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 //import lollipin.orangegangsters.github.com.lollipin.R;
-import uk.me.lewisdeane.ldialogs.BaseDialog;
-import uk.me.lewisdeane.ldialogs.CustomDialog;
+/*import uk.me.lewisdeane.ldialogs.BaseDialog;
+import uk.me.lewisdeane.ldialogs.CustomDialog;*/
 /**
  * Created by oliviergoutay on 1/14/15.
  */
@@ -27,10 +29,12 @@ public class CustomPinActivity extends AppLockActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    protected LockManager mLockManager;
 
     @Override
     public void showForgotDialog() {
-        Resources res = getResources();
+
+        /*Resources res = getResources();
         // Create the builder with required paramaters - Context, Title, Positive Text
         CustomDialog.Builder builder = new CustomDialog.Builder(this,
                 res.getString(R.string.activity_dialog_title),
@@ -48,10 +52,10 @@ public class CustomPinActivity extends AppLockActivity {
         builder.buttonAlignment(BaseDialog.Alignment.CENTER);
 
         //Set text sizes
-        builder.titleTextSize((int) res.getDimension(R.dimen.activity_dialog_title_size));
+       *//* builder.titleTextSize((int) res.getDimension(R.dimen.activity_dialog_title_size));
         builder.contentTextSize((int) res.getDimension(R.dimen.activity_dialog_content_size));
         builder.buttonTextSize((int) res.getDimension(R.dimen.activity_dialog_positive_button_size));
-        //builder.buttonTextSize(int) 6sp);
+        //builder.buttonTextSize(int) 6sp);*//*
         res.getDimension(R.dimen.activity_dialog_negative_button_size);
 
         //Build the dialog.
@@ -71,13 +75,24 @@ public class CustomPinActivity extends AppLockActivity {
         });
 
         // Show the dialog.
-        customDialog.show();
+        customDialog.show();*/
     }
 
     @Override
     public void onPinFailure(int attempts) {
 
     }
+
+ /*   @Override
+    public void setPinCode(String pinCode) {
+        super.setPinCode(pinCode);
+
+        if (pinCode.length() == 4)
+            Log.d(TAG, "setPinCode: " + pinCode);
+
+    }*/
+
+
 
     @Override
     public void onPinSuccess(int attempts) {
@@ -97,6 +112,12 @@ public class CustomPinActivity extends AppLockActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        mLockManager = LockManager.getInstance();
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 
     /**
