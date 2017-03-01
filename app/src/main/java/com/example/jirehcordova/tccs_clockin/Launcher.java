@@ -6,11 +6,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.github.orangegangsters.lollipin.lib.PinActivity;
+
 /**
  * Created by Jireh Cordova on 18/02/2017.
  */
 
-public class Launcher extends Activity {
+public class Launcher extends PinActivity {
 
     @Override
     public void onCreate(Bundle bundle) {

@@ -10,18 +10,28 @@ public class User implements Serializable {
     private int id;
     private String firstname;
     private String lastname;
-    private boolean hasFirstLogin;
-    private String hashedPin;
-
-    public User(int id, String firstname, String lastname, boolean hasFirstLogin, String hashedPin) {
+    private String email;
+    private boolean isFirstLogin;
+    public User(int id, String firstname, String lastname, boolean isFirstLogin, String hashedPin, String email) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.hasFirstLogin = hasFirstLogin;
+        this.isFirstLogin = isFirstLogin;
         this.hashedPin = hashedPin;
+        this.email = email;
     }
 
+    private String hashedPin;
+
     public User() {
+    }
+
+    public String getemail() {
+        return email;
+    }
+
+    public void setemail(String email) {
+        this.email = email;
     }
 
     public int getId() {
@@ -48,12 +58,12 @@ public class User implements Serializable {
         this.lastname = lastname;
     }
 
-    public boolean isHasFirstLogin() {
-        return hasFirstLogin;
+    public boolean getisFirstlogin() {
+        return isFirstLogin;
     }
 
-    public void setHasFirstLogin(boolean hasFirstLogin) {
-        this.hasFirstLogin = hasFirstLogin;
+    public void setisFirstlogin(boolean isFirstLogin) {
+        this.isFirstLogin= isFirstLogin;
     }
 
     public String getHashedPin() {

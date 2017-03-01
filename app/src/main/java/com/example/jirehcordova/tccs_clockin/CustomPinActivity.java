@@ -1,11 +1,13 @@
 package com.example.jirehcordova.tccs_clockin;
 
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -83,14 +85,18 @@ public class CustomPinActivity extends AppLockActivity {
 
     }
 
- /*   @Override
+    @Override
     public void setPinCode(String pinCode) {
         super.setPinCode(pinCode);
+        /*SharedPreferences pin = PreferenceManager.getDefaultSharedPreferences(CustomPinActivity.this);
+        SharedPreferences.Editor editor = pin.edit();
+        editor.putString("pinCode", pinCode);
+        editor.commit();*/
 
         if (pinCode.length() == 4)
             Log.d(TAG, "setPinCode: " + pinCode);
 
-    }*/
+    }
 
 
 

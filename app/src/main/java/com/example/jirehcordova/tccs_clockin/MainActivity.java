@@ -3,14 +3,9 @@ package com.example.jirehcordova.tccs_clockin;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,9 +22,6 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/*import uk.me.lewisdeane.ldialogs.BaseDialog;
-import uk.me.lewisdeane.ldialogs.CustomDialog;*/
-
 import static com.example.jirehcordova.tccs_clockin.R.id.welcomemsg;
 
 public class MainActivity extends PinActivity implements View.OnClickListener {
@@ -37,17 +29,16 @@ public class MainActivity extends PinActivity implements View.OnClickListener {
     SharedPreferences.Editor editor;
     public static final String KEY_LOGGED_IN = "isloggedin";
     Button btn;
-
     //private Button change;
     private static final int REQUEST_CODE_ENABLE = 11;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
        /* Intent intent = new Intent(MainActivity.this, CustomPinActivity.class);
         intent.putExtra(AppLock.EXTRA_TYPE, AppLock.ENABLE_PINLOCK);
         startActivityForResult(intent, REQUEST_CODE_ENABLE);*/
-        startActivity(new Intent(this, ChangePinActivity.class));
+//        startActivity(new Intent(this, ChangePinA
+// ctivity.class));
 
         setContentView(R.layout.activity_main);
 
@@ -61,7 +52,7 @@ public class MainActivity extends PinActivity implements View.OnClickListener {
         btn.setText("CLOCK IN");
         btn.setOnClickListener(this);
 
-        prefs = getSharedPreferences("AppPref", Context.MODE_PRIVATE);
+        prefs = getSharedPreferences("name", Context.MODE_PRIVATE);
         editor = prefs.edit();
         String name = prefs.getString("header", "");
         welcome.setText("Welcome, " +name+"!");
@@ -108,7 +99,7 @@ public class MainActivity extends PinActivity implements View.OnClickListener {
         }
     }
 
-    private void loginRequest() {
+    /*private void loginRequest() {
         JSONObject body = new JSONObject();
         try {
             body.put("email", "test@test.com");
@@ -123,7 +114,6 @@ public class MainActivity extends PinActivity implements View.OnClickListener {
                 // response from the server
                 // {"id" : 1, "firstname": "ako", "lastname": "ikaw", "email": "test@testing.com", "hasFirstLogin": false}
                 Gson gson = new Gson();
-
                 User user = gson.fromJson(response.toString(), User.class);
 
                 user.getFirstname();
@@ -146,7 +136,7 @@ public class MainActivity extends PinActivity implements View.OnClickListener {
     }
 
     private void showMyDialog(String content){
-       /* Resources res = getResources();
+       *//* Resources res = getResources();
         CustomDialog.Builder builder = new CustomDialog.Builder(this,
                 res.getString(R.string.activity_dialog_title),
                 res.getString(R.string.activity_dialog_accept));
@@ -187,6 +177,6 @@ public class MainActivity extends PinActivity implements View.OnClickListener {
         });
 
         // Show the dialog.
-        customDialog.show();*/
-    }
+        customDialog.show();*//*
+    }*/
 }

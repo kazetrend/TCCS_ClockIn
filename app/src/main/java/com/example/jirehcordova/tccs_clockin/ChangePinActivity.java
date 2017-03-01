@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.github.orangegangsters.lollipin.lib.PinActivity;
 import com.github.orangegangsters.lollipin.lib.managers.AppLock;
 
 import static android.content.ContentValues.TAG;
@@ -28,6 +27,8 @@ public class ChangePinActivity extends AppCompatActivity {
 
         if(requestCode==100){
             Log.d(TAG, "Pin enabled");
+            Intent intent = new Intent(ChangePinActivity.this, MainActivity.class);
+            startActivity(intent);
         }else{
             Log.d(TAG, "fail");
         }
