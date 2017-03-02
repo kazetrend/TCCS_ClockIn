@@ -71,7 +71,7 @@ public class registeractivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, "http://192.168.1.14:8080/api/v1/login", body, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, "http://192.168.0.104:8080/api/v1/login", body, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 if (dialog.isShowing()) {
@@ -87,11 +87,11 @@ public class registeractivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = prefes.edit();
                 editor.putString("name", namee);
                 editor.commit();
-                if (firstlogin==true) {
+               /* if (firstlogin==true) {
                     // prompt user to change pin and send again new pin to server
-                    Intent intent = new Intent(registeractivity.this, ChangePinActivity.class);
+                   // Intent intent = new Intent(registeractivity.this, ChangePinActivity.class);
                     startActivity(intent);
-                } else {
+                } else {*/
                     /*String hPin = user.getHashedPin();
                     SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(registeractivity.this);
                     SharedPreferences.Editor editor1 = pref.edit();
@@ -100,7 +100,7 @@ public class registeractivity extends AppCompatActivity {
                     // enter into the app
                     Intent intent = new Intent(registeractivity.this, MainActivity.class);
                     startActivity(intent);
-                }
+                //}
             }
 
             /*@Override

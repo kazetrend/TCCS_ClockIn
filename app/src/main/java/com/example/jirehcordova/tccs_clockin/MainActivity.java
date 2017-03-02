@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,68 +24,53 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static com.example.jirehcordova.tccs_clockin.R.id.pinSetUp;
 import static com.example.jirehcordova.tccs_clockin.R.id.welcomemsg;
+import static com.github.orangegangsters.lollipin.lib.managers.AppLock.ENABLE_PINLOCK;
 
 public class MainActivity extends PinActivity implements View.OnClickListener {
     SharedPreferences prefs;
     SharedPreferences.Editor editor;
     public static final String KEY_LOGGED_IN = "isloggedin";
     Button btn;
-    //private Button change;
     private static final int REQUEST_CODE_ENABLE = 11;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       /* Intent intent = new Intent(MainActivity.this, CustomPinActivity.class);
-        intent.putExtra(AppLock.EXTRA_TYPE, AppLock.ENABLE_PINLOCK);
-        startActivityForResult(intent, REQUEST_CODE_ENABLE);*/
-//        startActivity(new Intent(this, ChangePinA
-// ctivity.class));
-
         setContentView(R.layout.activity_main);
 
-        this.findViewById(R.id.button_change_pin).setOnClickListener(this);
-        this.findViewById(R.id.button_unlock_pin).setOnClickListener(this);
-        this.findViewById(R.id.button_compat_locked).setOnClickListener(this);
-        this.findViewById(R.id.button_not_locked).setOnClickListener(this);
         TextView welcome = (TextView)findViewById(welcomemsg);
-
         btn = (Button)findViewById(R.id.changeling);
         btn.setText("CLOCK IN");
         btn.setOnClickListener(this);
 
+        Button pinSet = (Button)findViewById(R.id.pinSetUp);
+        final LinearLayout zz = (LinearLayout) findViewById(R.id.line);
+        pinSet.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View button){
+                zz.removeView(button);
+                Intent intent = new Intent(MainActivity.this, CustomPinActivity.class);
+                intent.putExtra(AppLock.EXTRA_TYPE, AppLock.ENABLE_PINLOCK);
+                startActivityForResult(intent, REQUEST_CODE_ENABLE);
+            }
+        });
+
         prefs = getSharedPreferences("name", Context.MODE_PRIVATE);
+
         editor = prefs.edit();
-        String name = prefs.getString("header", "");
+        String name = prefs.getString("name", "");
         welcome.setText("Welcome, " +name+"!");
 
         if(prefs.getBoolean(KEY_LOGGED_IN, false)){
             btn.setText("CLOCK OUT");
         }
     }
-
     @Override
     public void onClick(View v) {
         Intent intent = new Intent(MainActivity.this, CustomPinActivity.class);
         switch (v.getId()) {
-            case R.id.button_change_pin:
-                intent.putExtra(AppLock.EXTRA_TYPE, AppLock.CHANGE_PIN);
-                startActivity(intent);
-                break;
-            case R.id.button_unlock_pin:
-                intent.putExtra(AppLock.EXTRA_TYPE, AppLock.UNLOCK_PIN);
-                startActivity(intent);
-                break;
-            case R.id.button_compat_locked:
-                Toast.makeText(this, "Clocked In", Toast.LENGTH_LONG).show();
-                /*Intent intent2 = new Intent(MainActivity.this, LockedCompatActivity.class);
-                startActivity(intent2);*/
-                break;
-            case R.id.button_not_locked:
-                Toast.makeText(this, "Clocked Out", Toast.LENGTH_LONG).show();
-                /*Intent intent3 = new Intent(MainActivity.this, NotLockedActivity.class);
-                startActivity(intent3);*/
-                break;
             case R.id.changeling:
                 Toast.makeText(this, "Here is the final button which changes face depending on login/logout case ver 1", Toast.LENGTH_LONG).show();
                 if(prefs.getBoolean(KEY_LOGGED_IN, false)){
@@ -107,7 +94,6 @@ public class MainActivity extends PinActivity implements View.OnClickListener {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, "http://10.0.0.2:8080/api/login", body, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -175,8 +161,17 @@ public class MainActivity extends PinActivity implements View.OnClickListener {
                 Toast.makeText(getApplicationContext(), "Cancel", Toast.LENGTH_SHORT).show();
             }
         });
-
         // Show the dialog.
         customDialog.show();*//*
     }*/
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode){
+            case REQUEST_CODE_ENABLE:
+                Toast.makeText(this, "PinCode enabled", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
 }

@@ -16,59 +16,38 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@+id/button_compat_locked"
+        android:text="Clock In"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="CLOCK IN"
-        android:layout_marginTop="49dp"
-        android:layout_below="@+id/welcomemsg"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:id="@+id/button_not_locked"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="CLOCK OUT"
-        android:layout_marginTop="83dp"
-        android:layout_alignTop="@+id/button_compat_locked"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:id="@+id/button_change_pin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Change"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="53dp"
-        android:layout_marginStart="53dp"
-        android:layout_marginBottom="82dp" />
-
-    <Button
-        android:id="@+id/button_unlock_pin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Check"
-        android:layout_marginRight="51dp"
-        android:layout_marginEnd="51dp"
-        android:layout_alignTop="@+id/button_change_pin"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:text="Clock On"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button_not_locked"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="71dp"
+        android:layout_marginTop="88dp"
         android:id="@+id/changeling"
         android:textSize="30sp"
         android:textAlignment="center"
         android:elevation="15dp"
-        android:onClick=""/>
+        android:onClick=""
+        android:layout_below="@+id/welcomemsg"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/line"
+        android:layout_marginBottom="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:text="SET UP PIN"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="206dp"
+            android:id="@+id/pinSetUp"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            android:textAlignment="center" />
+    </LinearLayout>
 
 </RelativeLayout>

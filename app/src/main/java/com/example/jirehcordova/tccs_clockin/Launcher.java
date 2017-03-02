@@ -4,15 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.github.orangegangsters.lollipin.lib.PinActivity;
+//import com.github.orangegangsters.lollipin.lib.PinActivity;
 
 /**
  * Created by Jireh Cordova on 18/02/2017.
  */
 
-public class Launcher extends PinActivity {
+public class Launcher extends AppCompatActivity {
 
     @Override
     public void onCreate(Bundle bundle) {
