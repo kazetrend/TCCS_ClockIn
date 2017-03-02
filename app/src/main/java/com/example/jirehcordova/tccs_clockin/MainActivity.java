@@ -45,7 +45,7 @@ public class MainActivity extends PinActivity implements View.OnClickListener {
         btn.setText("CLOCK IN");
         btn.setOnClickListener(this);
 
-        Button pinSet = (Button)findViewById(R.id.pinSetUp);
+        /*Button pinSet = (Button)findViewById(R.id.pinSetUp);
         final LinearLayout zz = (LinearLayout) findViewById(R.id.line);
         pinSet.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -55,7 +55,7 @@ public class MainActivity extends PinActivity implements View.OnClickListener {
                 intent.putExtra(AppLock.EXTRA_TYPE, AppLock.ENABLE_PINLOCK);
                 startActivityForResult(intent, REQUEST_CODE_ENABLE);
             }
-        });
+        });*/
 
         prefs = getSharedPreferences("name", Context.MODE_PRIVATE);
 

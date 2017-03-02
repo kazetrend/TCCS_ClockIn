@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.android.volley.Request;
@@ -25,6 +26,8 @@ import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import com.github.orangegangsters.lollipin.lib.managers.AppLock;
 import com.google.gson.Gson;
 import org.json.JSONException;
 import java.util.HashMap;
@@ -39,6 +42,7 @@ import com.example.jirehcordova.tccs_clockin.model.User;
 public class registeractivity extends AppCompatActivity {
 
     private static final String JSON_OBJECT_REQUEST_URL = "http://10.0.0.2:8080/api/login";
+    private static final int REQUEST_CODE_ENABLE = 11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,18 @@ public class registeractivity extends AppCompatActivity {
         final EditText pin = (EditText)findViewById(R.id.Pin);
         final EditText email = (EditText)findViewById(R.id.email);
         Button bregister = (Button)findViewById(R.id.submit);
+
+        Button pinSet = (Button)findViewById(R.id.pinSetUp);
+        final LinearLayout zz = (LinearLayout) findViewById(R.id.line);
+        pinSet.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View button){
+                zz.removeView(button);
+                Intent intent = new Intent(registeractivity.this, CustomPinActivity.class);
+                intent.putExtra(AppLock.EXTRA_TYPE, AppLock.ENABLE_PINLOCK);
+                startActivityForResult(intent, REQUEST_CODE_ENABLE);
+            }
+        });
 
        // client.execute();
         bregister.setOnClickListener(new View.OnClickListener(){
